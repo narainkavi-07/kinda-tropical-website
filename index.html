@@ -4,7 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kinda Tropical - East Austin Hangout</title>
+    <meta name="description" content="Full bar, brunch to midnight, dog-friendly patio. Veteran-owned on East 7th St. Open daily 11AM–12AM.">
+    <link rel="canonical" href="https://kindatropical.com" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kindatropical.com">
+    <meta property="og:title" content="Kinda Tropical — East Austin Bar & Restaurant">
+    <meta property="og:description" content="Full bar, brunch to midnight, dog-friendly patio. Veteran-owned on East 7th St. Open daily 11AM–12AM.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1200&h=630&auto=format&fit=crop">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://kindatropical.com">
+    <meta property="twitter:title" content="Kinda Tropical — East Austin Bar & Restaurant">
+    <meta property="twitter:description" content="Full bar, brunch to midnight, dog-friendly patio. Veteran-owned on East 7th St. Open daily 11AM–12AM.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1200&h=630&auto=format&fit=crop">
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Kinda Tropical",
+      "image": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1200&h=630&auto=format&fit=crop",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "3501 E 7th St",
+        "addressLocality": "Austin",
+        "addressRegion": "TX",
+        "postalCode": "78702",
+        "addressCountry": "US"
+      },
+      "telephone": "(512) 373-8430",
+      "openingHours": "Mo-Su 11:00-00:00",
+      "priceRange": "$",
+      "servesCuisine": [
+        "American",
+        "Bar food",
+        "Vegan",
+        "Vegetarian"
+      ],
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Dog-friendly",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Patio",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Wheelchair accessible",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Parking",
+          "value": true
+        }
+      ],
+      "hasMenu": "https://kindatropical.com/menu",
+      "sameAs": [
+        "https://instagram.com/kindatropical",
+        "https://facebook.com/kindatropical"
+      ]
+    }
+    </script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+        
         /* Base styles */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
@@ -31,7 +103,7 @@
             max-width: 1200px;
             margin: 0 auto;
             min-height: 100vh;
-            padding-bottom: 100px; /* Space for mobile bar */
+            padding-bottom: 120px; /* Space for mobile bar */
         }
         
         /* Cards */
@@ -45,7 +117,7 @@
             box-shadow: 6px 6px 0px #F97316;
             opacity: 0; /* For scroll animation */
             transform: translateY(20px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         .card.visible {
             opacity: 1;
@@ -78,6 +150,8 @@
             text-transform: uppercase;
             font-size: 14px;
             transition: color 0.2s;
+            padding: 12px 8px;
+            display: inline-block;
         }
         .nav-links a:hover { color: #F97316; }
 
@@ -129,11 +203,161 @@
 
         .patio { grid-column: 4 / 7; background-color: #FFD56B; }
         .menu { grid-column: 4 / 7; grid-row: span 2; }
-        .events { grid-column: 1 / 3; background-color: #F97316; color: white; box-shadow: 6px 6px 0px #1A3C34; }
+        .events { grid-column: 1 / 4; background-color: #F97316; color: white; box-shadow: 6px 6px 0px #1A3C34; }
         .events h2 { color: white; }
-        .about { grid-column: 3 / 5; }
-        .email { grid-column: 5 / 7; background-color: #E6EFE9; }
-        .map-card { grid-column: 1 / -1; }
+        .about { grid-column: 4 / 7; }
+        
+        /* Photos Section */
+        .photos {
+            grid-column: 1 / -1;
+            background-color: #FFF9E6;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .photos h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            text-align: center;
+            text-transform: none;
+            letter-spacing: normal;
+            margin-bottom: 0;
+        }
+        .masonry-grid {
+            column-count: 3;
+            column-gap: 16px;
+        }
+        .masonry-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            break-inside: avoid;
+            display: block;
+        }
+        .masonry-item img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .photo-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 60, 52, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #FFF9E6;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-decoration: none;
+        }
+        .masonry-item:hover .photo-overlay {
+            opacity: 1;
+        }
+        .masonry-item:hover img {
+            transform: scale(1.05);
+        }
+        .photo-overlay svg {
+            width: 32px; height: 32px; margin-bottom: 8px; fill: currentColor;
+        }
+        .photo-overlay span {
+            font-weight: bold; font-size: 14px; letter-spacing: 1px;
+        }
+        .photos .cta-btn {
+            align-self: center;
+        }
+        
+        .veteran-banner {
+            grid-column: 1 / -1;
+            background-color: #1c1c1a;
+            color: #FFF9E6;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+            padding: 40px;
+        }
+        .veteran-left { flex: 1; }
+        .veteran-left h2 {
+            font-family: 'Playfair Display', serif;
+            color: #FFF9E6;
+            font-size: 32px;
+            margin-bottom: 16px;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+        .veteran-left p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+            margin: 0;
+        }
+        .veteran-right {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            min-width: 250px;
+        }
+        .stat-pill {
+            border: 2px solid #e8a020;
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            color: #FFF9E6;
+        }
+        
+        /* Marquee */
+        .marquee-section {
+            grid-column: 1 / -1;
+            padding: 32px 0;
+            overflow: hidden;
+            background-color: #1A3C34;
+            border-color: #1A3C34;
+            box-shadow: 6px 6px 0px #FFD56B;
+        }
+        .marquee-wrapper {
+            display: flex;
+            width: max-content;
+            animation: scrollLeft 40s linear infinite;
+        }
+        .marquee-section:hover .marquee-wrapper {
+            animation-play-state: paused;
+        }
+        .review-card {
+            background: #FFF9E6;
+            border: 2px solid #1A3C34;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 0 12px;
+            display: inline-flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 320px;
+            max-width: 320px;
+            white-space: normal;
+            box-shadow: 4px 4px 0px #F97316;
+            transition: transform 0.2s;
+        }
+        .review-card:hover {
+            transform: translateY(-4px);
+        }
+        .stars { color: #e8a020; font-size: 18px; letter-spacing: 2px; }
+        .review-text { font-size: 16px; font-style: italic; line-height: 1.4; color: #1A3C34; font-family: 'Playfair Display', serif; margin: 0; }
+        .reviewer-name { font-size: 12px; font-weight: bold; text-transform: uppercase; opacity: 0.7; color: #1A3C34; }
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        .email { grid-column: 1 / 3; background-color: #E6EFE9; }
+        .map-card { grid-column: 3 / 7; }
 
         /* Menu Tabs */
         .menu-tabs {
@@ -145,7 +369,7 @@
         .tab-btn {
             background: transparent;
             border: 1px solid #1A3C34;
-            padding: 6px 12px;
+            padding: 12px 16px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: bold;
@@ -191,12 +415,76 @@
         .menu-item { display: flex; flex-direction: column; border-bottom: 1px dashed #1A3C34; padding-bottom: 8px; }
         .menu-item h3 { font-size: 16px; display: flex; justify-content: space-between; margin-bottom: 4px; }
         .menu-item p { font-size: 14px; opacity: 0.8; margin-bottom: 0; }
-        .price { font-weight: bold; }
+        .price { font-weight: bold; margin-left: auto; }
         
-        .events-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
-        .events-list li { display: flex; flex-direction: column; border-bottom: 1px dashed rgba(255,255,255,0.5); padding-bottom: 8px; }
-        .events-list strong { font-size: 16px; text-transform: uppercase; }
-        .events-list span { font-size: 14px; opacity: 0.9; }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+        .badge.vegan { background-color: #4CAF50; color: white; }
+        .badge.vg { background-color: #009688; color: white; }
+        .badge.gf { background-color: #FFB300; color: #1A3C34; }
+        
+        .events-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 16px; }
+        .event-card {
+            background: #FFF9E6;
+            color: #1A3C34;
+            border-top: 4px solid #1A3C34;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 2px 2px 0px rgba(26, 60, 52, 0.2);
+        }
+        .event-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 4px 6px 0px rgba(26, 60, 52, 0.4);
+        }
+        .event-date-pill {
+            background: #1A3C34;
+            color: #FFF9E6;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .event-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin: 4px 0 0 0;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+        .event-card p {
+            font-size: 14px;
+            line-height: 1.4;
+            margin: 0;
+            opacity: 0.9;
+        }
+        .rsvp-btn {
+            margin-top: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #F97316;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .rsvp-btn:hover {
+            border-color: #F97316;
+        }
         
         /* Forms & Buttons */
         .email-form { display: flex; flex-direction: column; gap: 10px; }
@@ -204,7 +492,7 @@
         
         .cta-btn, button[type="submit"] {
             display: inline-block;
-            padding: 10px 16px;
+            padding: 12px 20px;
             background-color: #F97316;
             color: white;
             border: 2px solid #1A3C34;
@@ -260,12 +548,99 @@
 
         .footer {
             grid-column: 1 / -1;
-            text-align: center;
-            padding: 24px;
-            font-size: 12px;
+            background-color: #1A3C34;
+            color: #FFF9E6;
+            padding: 48px 24px 24px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 24px;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 32px;
+        }
+        .footer-left h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 8px;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+        .footer-left p {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 16px;
+        }
+        .footer-badge {
+            display: inline-block;
+            border: 1px solid #e8a020;
+            color: #e8a020;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
-            opacity: 0.8;
+        }
+        .footer-center h4, .footer-right h4 {
+            font-size: 14px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-links a {
+            color: #FFF9E6;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: #F97316; }
+        
+        .footer-right p {
+            font-size: 14px;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+        .social-icons {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .social-icons a {
+            color: #FFF9E6;
+            transition: color 0.2s;
+            padding: 12px;
+            margin: -12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .social-icons a:hover { color: #F97316; }
+        .social-icons svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 249, 230, 0.1);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            opacity: 0.6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Responsive */
@@ -275,14 +650,21 @@
             .slideshow { grid-column: 1 / -1; min-height: 250px; }
             .patio { grid-column: 1 / 3; }
             .menu { grid-column: 3 / 5; }
+            .photos { grid-column: 1 / -1; }
             .events { grid-column: 1 / 3; }
             .about { grid-column: 3 / 5; }
+            .veteran-banner { grid-column: 1 / -1; flex-direction: column; text-align: center; padding: 24px; }
+            .veteran-right { width: 100%; }
             .email { grid-column: 1 / -1; }
+            .map-card { grid-column: 1 / -1; }
             .header { flex-direction: column; gap: 16px; }
         }
         
         @media (max-width: 768px) {
             .mobile-bottom-bar { display: flex; }
+            .footer-top { grid-template-columns: 1fr; gap: 40px; }
+            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+            .masonry-grid { column-count: 2; }
         }
 
         @media (max-width: 600px) {
@@ -339,16 +721,28 @@
         <div class="tab-content active" id="tab-food">
             <div class="menu-grid">
                 <div class="menu-item">
-                    <h3>Breakfast Tacos <span class="price">$8</span></h3>
-                    <p>Because you need them. Served till we run out.</p>
-                </div>
-                <div class="menu-item">
-                    <h3>The Smashburger <span class="price">$14</span></h3>
-                    <p>Double patty, house pickles. The reason you're really here.</p>
-                </div>
-                <div class="menu-item">
-                    <h3>Yucca Fries <span class="price">$9</span></h3>
+                    <h3>Yucca Fries <span class="badge vg">VG</span><span class="badge gf">GF</span> <span class="price">$9</span></h3>
                     <p>Salty, crispy, and mandatory for patio drinking.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Jackfruit Sandwich <span class="badge vegan">Vegan</span> <span class="price">$13</span></h3>
+                    <p>Smoky and stacked. You won't miss the meat.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Chips & Salsa <span class="badge vegan">Vegan</span><span class="badge gf">GF</span> <span class="price">$6</span></h3>
+                    <p>The official snack of East Austin.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Chicken Wings <span class="price">$14</span></h3>
+                    <p>Crispy, saucy, and perfect with a cold beer.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Veggie Burger <span class="badge vg">VG</span> <span class="price">$12</span></h3>
+                    <p>House-made patty that actually tastes good.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Curly Fries <span class="badge vg">VG</span> <span class="price">$8</span></h3>
+                    <p>Because regular fries are boring.</p>
                 </div>
             </div>
         </div>
@@ -357,16 +751,28 @@
         <div class="tab-content" id="tab-bar">
             <div class="menu-grid">
                 <div class="menu-item">
-                    <h3>Painkiller <span class="price">$12</span></h3>
-                    <p>Rum, pineapple, coconut. Cheaper than a flight to Tulum.</p>
+                    <h3>Black Margarita <span class="price">$13</span></h3>
+                    <p>Activated charcoal. Looks cool, tastes better.</p>
                 </div>
                 <div class="menu-item">
-                    <h3>Spicy Marg <span class="price">$11</span></h3>
-                    <p>Tequila, jalapeño, tajin. It bites back a little.</p>
+                    <h3>Piña Colada <span class="price">$12</span></h3>
+                    <p>Vacation in a glass. Umbrella included.</p>
                 </div>
                 <div class="menu-item">
-                    <h3>Cold Beer <span class="price">$6</span></h3>
+                    <h3>Espresso Martini <span class="price">$13</span></h3>
+                    <p>For when you need to wake up and get down.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>House Margarita <span class="price">$10</span></h3>
+                    <p>Classic, strong, and exactly what you need.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Local Draft Beer <span class="price">$6</span></h3>
                     <p>Rotating East Austin taps. Always cold.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Popsicle Cocktails <span class="price">$8</span></h3>
+                    <p>Boozy popsicles. Don't overthink it.</p>
                 </div>
             </div>
         </div>
@@ -375,12 +781,20 @@
         <div class="tab-content" id="tab-coffee">
             <div class="menu-grid">
                 <div class="menu-item">
-                    <h3>Iced Matcha <span class="price">$6</span></h3>
-                    <p>Ceremonial grade. For when you need to feel productive.</p>
+                    <h3>Oat Milk Latte <span class="price">$6</span></h3>
+                    <p>On tap. Fast, cold, and dangerously good.</p>
                 </div>
                 <div class="menu-item">
                     <h3>Cold Brew <span class="price">$5</span></h3>
                     <p>Steeped 24 hours. Will definitely wake you up.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Matcha Latte <span class="price">$6</span></h3>
+                    <p>Ceremonial grade. For when you need to feel productive.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Cortado <span class="price">$4</span></h3>
+                    <p>Equal parts espresso and milk. No nonsense.</p>
                 </div>
             </div>
         </div>
@@ -420,31 +834,192 @@
         <span style="font-size: 12px; opacity: 0.7; margin-top: 8px;">Yeah, we're open late.</span>
     </section>
 
+    <!-- Photos Section -->
+    <section id="photos" class="card photos">
+        <h2>Pull up. Stay a while.</h2>
+        <div class="masonry-grid">
+            <a href="https://instagram.com/kindatropical" target="_blank" class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=600&h=800&auto=format&fit=crop" alt="Tropical bar patio" loading="lazy" />
+                <div class="photo-overlay">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <span>@kindatropical</span>
+                </div>
+            </a>
+            <a href="https://instagram.com/kindatropical" target="_blank" class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600&h=500&auto=format&fit=crop" alt="Outdoor restaurant Austin" loading="lazy" />
+                <div class="photo-overlay">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <span>@kindatropical</span>
+                </div>
+            </a>
+            <a href="https://instagram.com/kindatropical" target="_blank" class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?q=80&w=600&h=700&auto=format&fit=crop" alt="Cocktails bar night" loading="lazy" />
+                <div class="photo-overlay">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <span>@kindatropical</span>
+                </div>
+            </a>
+            <a href="https://instagram.com/kindatropical" target="_blank" class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?q=80&w=600&h=600&auto=format&fit=crop" alt="Brunch patio friends" loading="lazy" />
+                <div class="photo-overlay">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <span>@kindatropical</span>
+                </div>
+            </a>
+            <a href="https://instagram.com/kindatropical" target="_blank" class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?q=80&w=600&h=800&auto=format&fit=crop" alt="Craft cocktails" loading="lazy" />
+                <div class="photo-overlay">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <span>@kindatropical</span>
+                </div>
+            </a>
+            <a href="https://instagram.com/kindatropical" target="_blank" class="masonry-item">
+                <img src="https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?q=80&w=600&h=500&auto=format&fit=crop" alt="Bar string lights" loading="lazy" />
+                <div class="photo-overlay">
+                    <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    <span>@kindatropical</span>
+                </div>
+            </a>
+        </div>
+        <a href="https://instagram.com/kindatropical" target="_blank" class="cta-btn">Follow Us @kindatropical</a>
+    </section>
+
     <!-- Events Section -->
     <section id="events" class="card events">
         <h2>What's Going On</h2>
-        <ul class="events-list">
-            <li>
-                <strong>Weekends</strong>
-                <span>Vinyl DJs on the patio. Good luck finding a seat.</span>
-            </li>
-            <li>
-                <strong>First Sundays</strong>
-                <span>Vintage market, local art, and day drinking.</span>
-            </li>
-            <li>
-                <strong>Everyday</strong>
-                <span>Happy hour 3-6 PM. Doesn't last forever.</span>
-            </li>
-        </ul>
-        <a href="#" class="cta-btn secondary">See the Lineup</a>
+        <div class="events-grid">
+            <div class="event-card">
+                <span class="event-date-pill">SUN APR 19</span>
+                <h3>Sunday Vinyl Sessions</h3>
+                <p>Rotating DJs spin records on the patio. Free, all day.</p>
+                <a href="#" class="rsvp-btn">RSVP &rarr;</a>
+            </div>
+            <div class="event-card">
+                <span class="event-date-pill">SUN MAY 3</span>
+                <h3>First Sunday Market</h3>
+                <p>Local vendors, vintage finds, day drinking. Every first Sunday.</p>
+                <a href="#" class="rsvp-btn">RSVP &rarr;</a>
+            </div>
+            <div class="event-card">
+                <span class="event-date-pill">MON-FRI</span>
+                <h3>Happy Hour Daily</h3>
+                <p>Mon–Fri 3–6PM. $5 wells, $6 drafts, $8 cocktails.</p>
+                <a href="#" class="rsvp-btn">RSVP &rarr;</a>
+            </div>
+        </div>
+        <a href="https://instagram.com/kindatropical" target="_blank" class="cta-btn secondary">Follow for Updates</a>
     </section>
 
     <!-- About Section -->
     <section id="about" class="card about">
         <h2>The Vibe</h2>
         <p>We're a converted gas station on 7th Street. No dress code, no reservations, no corporate BS. Just a spot to get some work done, meet up with friends, and accidentally stay until last call.</p>
-        <a href="#email" class="cta-btn">Join the Party</a>
+        <a href="#email" class="cta-btn">Get on the List</a>
+    </section>
+
+    <!-- Veteran Banner -->
+    <section class="card veteran-banner">
+        <div class="veteran-left">
+            <h2>Veteran-Owned & Community-Built</h2>
+            <p>Kinda Tropical was founded in 2017 by veterans who wanted to build a real neighborhood spot — not a chain, not a concept. Just a great bar, a chill patio, and food that actually hits. We're proud of where we came from and proud of what we've built on East 7th.</p>
+            <a href="#menu" class="cta-btn secondary" style="margin-top: 24px; align-self: flex-start; display: inline-block;">Grab a Drink</a>
+        </div>
+        <div class="veteran-right">
+            <div class="stat-pill">Est. 2017</div>
+            <div class="stat-pill">Veteran-Owned</div>
+            <div class="stat-pill">East Austin Since Day One</div>
+        </div>
+    </section>
+
+    <!-- Reviews Marquee -->
+    <section class="card marquee-section">
+        <div class="marquee-wrapper">
+            <!-- Set 1 -->
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Best patio in East Austin — period."</p>
+                <span class="reviewer-name">— Sarah</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"The activated charcoal marg is unreal."</p>
+                <span class="reviewer-name">— Mike</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Brought my dog and stayed for 4 hours. Zero regrets."</p>
+                <span class="reviewer-name">— Jessica</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Our Sunday brunch spot every single week."</p>
+                <span class="reviewer-name">— David</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Yucca fries + a frozen marg = perfect afternoon."</p>
+                <span class="reviewer-name">— Amanda</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Veteran-owned and it shows — real hospitality."</p>
+                <span class="reviewer-name">— Chris</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Espresso martini at midnight? Yes."</p>
+                <span class="reviewer-name">— Taylor</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"The patio heaters mean there's no excuse not to come in winter."</p>
+                <span class="reviewer-name">— Ryan</span>
+            </div>
+            <!-- Set 2 (Duplicate for seamless loop) -->
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Best patio in East Austin — period."</p>
+                <span class="reviewer-name">— Sarah</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"The activated charcoal marg is unreal."</p>
+                <span class="reviewer-name">— Mike</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Brought my dog and stayed for 4 hours. Zero regrets."</p>
+                <span class="reviewer-name">— Jessica</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Our Sunday brunch spot every single week."</p>
+                <span class="reviewer-name">— David</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Yucca fries + a frozen marg = perfect afternoon."</p>
+                <span class="reviewer-name">— Amanda</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Veteran-owned and it shows — real hospitality."</p>
+                <span class="reviewer-name">— Chris</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Espresso martini at midnight? Yes."</p>
+                <span class="reviewer-name">— Taylor</span>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"The patio heaters mean there's no excuse not to come in winter."</p>
+                <span class="reviewer-name">— Ryan</span>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 32px;">
+            <a href="https://maps.google.com/?q=Kinda+Tropical+Austin" target="_blank" class="cta-btn secondary">Come See For Yourself</a>
+        </div>
     </section>
 
     <!-- Email Section -->
@@ -468,8 +1043,48 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2026 Kinda Tropical. All rights reserved.</p>
-        <p>3501 E 7th St, Austin, TX 78702 | Yeah, we're open late (11am - 12am)</p>
+        <div class="footer-top">
+            <div class="footer-left">
+                <h3>Kinda Tropical</h3>
+                <p>East Austin's living room since 2017</p>
+                <div class="footer-badge">Veteran-Owned</div>
+            </div>
+            <div class="footer-center">
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="#menu">Menu</a>
+                    <a href="#patio">Patio</a>
+                    <a href="#events">Events</a>
+                    <a href="#about">About</a>
+                    <a href="https://www.toasttab.com/kinda-tropical/v3" target="_blank">Order Online</a>
+                    <a href="https://maps.google.com/?q=Kinda+Tropical+Austin" target="_blank">Get Directions</a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <h4>Find Us</h4>
+                <p>Open Daily 11AM–12AM</p>
+                <p>3501 E 7th St, Austin TX 78702</p>
+                <p>(512) 373-8430</p>
+                <div class="social-icons">
+                    <a href="https://instagram.com/kindatropical" target="_blank" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://facebook.com/kindatropical" target="_blank" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+                    </a>
+                    <a href="https://tiktok.com/@kindatropical" target="_blank" aria-label="TikTok">
+                        <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                    </a>
+                    <a href="https://twitter.com/kindatropical" target="_blank" aria-label="Twitter">
+                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Kinda Tropical. All rights reserved.</span>
+            <span>Built with love in Austin.</span>
+        </div>
     </footer>
   </div>
 
@@ -485,8 +1100,8 @@
         
         // 1. Open/Closed Badge Logic
         const updateStatus = () => {
-            const now = new Date();
-            const hour = now.getHours();
+            const austinTime = new Date(new Date().toLocaleString("en-US", {timeZone: "America/Chicago"}));
+            const hour = austinTime.getHours();
             const badge = document.getElementById('status-badge');
             const text = badge.querySelector('.status-text');
             
@@ -535,10 +1150,10 @@
 
         // 3. Happy Hour Countdown Logic
         const updateHappyHour = () => {
-            const now = new Date();
-            const day = now.getDay(); // 0 = Sun, 1 = Mon, ..., 5 = Fri, 6 = Sat
-            const hour = now.getHours();
-            const minutes = now.getMinutes();
+            const austinTime = new Date(new Date().toLocaleString("en-US", {timeZone: "America/Chicago"}));
+            const day = austinTime.getDay(); // 0 = Sun, 1 = Mon, ..., 5 = Fri, 6 = Sat
+            const hour = austinTime.getHours();
+            const minutes = austinTime.getMinutes();
             
             const hhWidget = document.getElementById('hh-countdown');
             
