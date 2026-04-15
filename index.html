@@ -123,6 +123,10 @@
         .hero h1 { font-size: clamp(40px, 6vw, 82px); line-height: 0.9; margin-bottom: 20px; color: #FFF9E6; }
         .hero p { font-size: 18px; opacity: 0.9; margin-bottom: 24px; }
         
+        .slideshow { grid-column: 1 / 4; padding: 0; overflow: hidden; position: relative; min-height: 300px; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1s ease-in-out; }
+        .slide.active { opacity: 1; }
+
         .patio { grid-column: 4 / 7; background-color: #FFD56B; }
         .menu { grid-column: 4 / 7; grid-row: span 2; }
         .events { grid-column: 1 / 3; background-color: #F97316; color: white; box-shadow: 6px 6px 0px #1A3C34; }
@@ -268,6 +272,7 @@
         @media (max-width: 900px) {
             .bento-container { grid-template-columns: repeat(4, 1fr); }
             .hero { grid-column: 1 / -1; }
+            .slideshow { grid-column: 1 / -1; min-height: 250px; }
             .patio { grid-column: 1 / 3; }
             .menu { grid-column: 3 / 5; }
             .events { grid-column: 1 / 3; }
@@ -396,6 +401,15 @@
 
         <a href="https://www.toasttab.com/kinda-tropical/v3" target="_blank" class="cta-btn" style="margin-top: 24px;">Skip the Line</a>
         <span style="font-size: 12px; opacity: 0.7; margin-top: 8px;">No wait, no hassle.</span>
+    </section>
+
+    <!-- Slideshow Section -->
+    <section class="card slideshow">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=1000&auto=format&fit=crop')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?q=80&w=1000&auto=format&fit=crop')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000&auto=format&fit=crop')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1000&auto=format&fit=crop')"></div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop')"></div>
     </section>
 
     <!-- Patio Section -->
@@ -553,6 +567,17 @@
         };
         updateHappyHour();
         setInterval(updateHappyHour, 1000); // Update every second for the countdown feel
+
+        // 5. Image Slideshow Logic
+        const slides = document.querySelectorAll('.slide');
+        if (slides.length > 0) {
+            let currentSlide = 0;
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 3500);
+        }
 
         // 4. Scroll-triggered animations
         const observerOptions = {
